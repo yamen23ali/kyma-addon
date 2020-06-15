@@ -1,0 +1,14 @@
+name: ocr
+version: 0.0.1
+description: "OCR service running in Kyma served by Knative"
+id: faebbe18-0a84-11e9-ab14-d663bd873d93
+displayName: "[Preview] SAP MLF OCR"
+tags: ocr,ml
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription:  "OCR service running in Kyma served by Knative"
+documentationURL: https://github.com/yamen23ali/kyma-addon
+#imageURL: https://rawcdn.githack.com/SAP/xf-addons/master/addons/c4c-mock-0.1.0/icon.svg
+bindable: false
+provisionOnlyOnce: true

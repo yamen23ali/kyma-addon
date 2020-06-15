@@ -1,0 +1,4 @@
+apiVersion: v1
+description: SAP ML OCR Functional Service Served By Knative
+name: ocr-knative
+version: 0.0.1

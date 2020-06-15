@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "ocr-0.0.1"
+      description: "SAP MLF OCR docs"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

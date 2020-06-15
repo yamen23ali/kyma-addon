@@ -1,0 +1,13 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: {{ .Chart.Name }}-trigger
+spec:
+  filter:
+    sourceAndType:
+      type: sap.com.explore.ocr
+  subscriber: 
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: {{ .Chart.Name }}-service-v1
