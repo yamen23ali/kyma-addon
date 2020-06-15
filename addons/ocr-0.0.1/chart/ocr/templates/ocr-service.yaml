@@ -1,45 +1,14 @@
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-service-v1
+  name: {{ .Chart.Name }}-service
+  namespace: {{ .Values.namespace }}
+  labels:
+    kubernetes.io/name: {{ .Chart.Name }}-service
+    app: {{ .Chart.Name }}-service
 spec:
-  template:
-    metadata:
-      annotations:
-        # Target in-flight-requests per pod.
-        autoscaling.knative.dev/target: "10"
-    spec:
-      imagePullSecrets:
-      - name: mlf-docker-registry-secret 
-      containers:
-      - name: {{ .Chart.Name }}-container
-        image: {{ .Values.ocrImage }}
-        imagePullPolicy: IfNotPresent
-        resources:
-          requests:
-            cpu: "2"
-            memory: "2Gi"
-          limits:
-            cpu: "3"
-            memory: "3Gi"
-        ports:
-        - containerPort: 5000
-          protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: "/healthz"
-            scheme: HTTP
-          initialDelaySeconds: 10
-          timeoutSeconds: 5
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: "/healthz"
-            scheme: HTTP
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
+  selector:
+    app: {{ .Chart.Name }}-service
+  ports:
+  - name: ocr-port
+    port: 5000
